@@ -1,16 +1,20 @@
-# ✅Validar Cadastro de Alunos  
+# validacao-cadastro-alunos
 
-### 💻Sistema em JavaScript que valida cadastros de alunos com base nos critérios:  
-- Nome: mínimo de 10 caracteres  
-- Idade: mínimo de 14 anos  
-- Cursos: mínimo de 3 cursos  
-- Assiduidade: mínimo de 2 presenças  
-- RA: mínimo de 7 dígitos  
+🛡️ Projeto Acadêmico: Validação de formulários e cadastro de alunos em JavaScript, aplicando regras de negócio.
 
-### ⚙️ Como Funciona:  
-- As informações são passadas em objetos de alunos.  
-- A função `validarCadastro()` chama as funções que verificam cada critério.  
-- Se todas forem aprovadas, o cadastro é validado e exibido.  
+---
 
-### 🛠️ Tecnologias Usadas:  
-- JavaScript  
+## 🎯 Sobre o Projeto
+Este repositório contém artefatos desenvolvidos no contexto de engenharia de software / engenharia de computação. 
+O objetivo principal deste projeto é a consolidação de conhecimentos práticos em desenvolvimento, estrutura de dados, lógica de programação e arquitetura de sistemas.
+
+## 🛠️ Tecnologias e Conceitos Aplicados
+Este projeto explora de maneira aprofundada:
+- Construção de código limpo e manutenível.
+- Separação de responsabilidades (quando aplicável).
+- Estruturação semântica e boas práticas da linguagem utilizada.
+
+---
+
+> **Desenvolvido por Lucas Xavier.**  
+> *Foco em excelência técnica, rigor acadêmico e construção de arquiteturas modernas.*
