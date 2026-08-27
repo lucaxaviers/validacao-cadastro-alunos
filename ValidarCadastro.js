@@ -1,69 +1,94 @@
-let aluno1={
-    nome:"Lucas Rodrigues Xavier",
-    idade:"17",
-    cursando:["TC","BD","IA"],
-    presença: ["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04"],
-    RA:"22230021"
+const aluno1 = {
+  nome: "Lucas Rodrigues Xavier",
+  idade: 17,
+  cursando: ["TC", "BD", "IA"],
+  presenca: ["2022-01-01", "2022-01-02", "2022-01-03", "2022-01-04"],
+  RA: "22230021"
+};
+
+const aluno2 = {
+  nome: "Marcos",
+  idade: 5,
+  cursando: ["INFO", "ADM"],
+  presenca: ["2022-01-01"],
+  RA: "222848"
+};
+
+function validarNome(aluno) {
+  if (!aluno.nome || aluno.nome.length < 10) {
+    console.log(`❌ [Nome]: "${aluno.nome || ''}" inválido. Deve possuir no mínimo 10 caracteres.`);
+    return false;
+  }
+  return true;
 }
 
-let aluno2={
-    nome:"Marcos",
-    idade:"5",
-    cursando:["INFO","ADM"],
-    presença: ["2022-01-01"],
-    ra:"222848"
+function validarIdade(aluno) {
+  const idade = Number(aluno.idade);
+  if (isNaN(idade) || idade < 14) {
+    console.log(`❌ [Idade]: ${aluno.idade} anos inválido. A idade mínima obrigatória é 14 anos.`);
+    return false;
+  }
+  return true;
 }
 
-function validarCadastro(aluno){//validando cadastro(ou quase)
-     const response={
-     status:"valid",
-     message:"Valido",
-     aluno: aluno
-        
-     }
-     if(validarNome(aluno) && validarIdade(aluno) && validarIdade(aluno) && validarCursos(aluno) && validarAssiduidade(aluno) && validarRA(aluno)){
-        console.log(response)
-     }
-}
-     
-
-
-function validarNome(aluno){//validando nome
-    const tamanho = aluno.nome.lenght
-    if(tamanho < 10){
-        return console.log('Nome Invalido')
-    }
-    return true
+function validarCursos(aluno) {
+  const cursos = aluno.cursando || aluno.cursos;
+  if (!Array.isArray(cursos) || cursos.length < 3) {
+    console.log(`❌ [Cursos]: ${cursos ? cursos.length : 0} curso(s) selecionado(s). Mínimo exigido: 3 disciplinas.`);
+    return false;
+  }
+  return true;
 }
 
-function validarIdade(aluno){//validando
-    const idade = aluno.idade
-    if(idade < 14){
-        return console.log('Idade minima não atingida')
-    }
-    return true
-}
-function validarCursos(aluno){//validando
-    const cursos = aluno.curso
-    if(cursos < 3){
-        return console.log('Cursos insuficientes')
-    }
-    return true
+function validarAssiduidade(aluno) {
+  const presenca = aluno.presenca || aluno.presença;
+  if (!Array.isArray(presenca) || presenca.length === 0) {
+    console.log("❌ [Assiduidade]: Histórico de frequência inválido ou não registrado.");
+    return false;
+  }
+  return true;
 }
 
-function validarAssiduidade(aluno){//validando
-    const assiduidade = aluno.assiduidade
-    if(assiduidade < 2){
-       return console.log('Assiduidade não atingida')
-    }
-    return true
+function validarRA(aluno) {
+  const ra = aluno.RA || aluno.ra;
+  if (!ra || String(ra).trim().length < 6) {
+    console.log("❌ [RA]: Registro Acadêmico inválido ou com formato incorreto.");
+    return false;
+  }
+  return true;
 }
 
-function validarRA(aluno){//validando
-    const ra = aluno.ra.lenght
-    if(ra <7){
-        return console.log('RA Invalido')
-    }
-    return true
+function validarCadastro(aluno) {
+  console.log(`\n--------------------------------------------------`);
+  console.log(`🔍 Validando cadastro de: ${aluno.nome}...`);
+  
+  const nomeValido = validarNome(aluno);
+  const idadeValida = validarIdade(aluno);
+  const cursosValidos = validarCursos(aluno);
+  const assiduidadeValida = validarAssiduidade(aluno);
+  const raValido = validarRA(aluno);
+
+  const aprovado = nomeValido && idadeValida && cursosValidos && assiduidadeValida && raValido;
+
+  if (aprovado) {
+    const response = {
+      status: "valid",
+      message: "Aluno aprovado em todas as regras de matrícula!",
+      aluno: aluno
+    };
+    console.log("✅ Resultado:", response.message);
+    return response;
+  } else {
+    console.log("⚠️ Resultado: Cadastro reprovado devido a inconsistências acima.");
+    return {
+      status: "invalid",
+      message: "Cadastro contém pendências com as regras da instituição.",
+      aluno: aluno
+    };
+  }
 }
 
+// Execução dos testes
+console.log("=== SISTEMA DE VALIDAÇÃO DE MATRÍCULAS ===");
+validarCadastro(aluno1);
+validarCadastro(aluno2);
